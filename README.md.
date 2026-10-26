@@ -1,122 +1,49 @@
-📊 RetailMart Country Sales Analysis
+📊 RETAILMART COUNTRY SALES ANALYSIS
 
-📌 Project Overview
+SQL | POSTGRESQL | POWER BI
 
-RetailMart Country Sales Analysis is a data analytics project developed to analyze retail sales performance across six countries using PostgreSQL, SQL, and Power BI.
+---
 
-The project combines sales datasets from Canada, China, India, Nigeria, the United Kingdom, and the United States to support country-wise sales analysis and business decision-making.
+📌 PROJECT OVERVIEW
 
-🛠️ Tools Used
+RetailMart Country Sales Analysis is a data analytics project focused on analyzing retail sales across six countries using SQL, PostgreSQL, and Power BI.
+
+---
+
+🛠️ TOOLS AND TECHNOLOGIES
 
 - PostgreSQL
 - SQL
 - Microsoft Power BI
 - CSV Datasets
 
-📈 Key Performance Indicators (KPIs)
+---
+
+📈 KEY PERFORMANCE INDICATORS
 
 - Total Sales
 - Total Profit
 - Total Transactions
 - Total Quantity Sold
-- Average Sales
-- Country-wise Sales Performance
 
-Include only KPIs that are implemented and validated in your dashboard.
+---
 
-🔍 Analysis Performed
+🔍 ANALYSIS PERFORMED
 
-1. Sales Analysis
+- Sales Analysis
+- Product Analysis
+- Customer Analysis
+- Geographic Analysis
+- Transaction Analysis
 
-Analyzed sales performance to understand sales trends and business results.
+---
 
-2. Product Analysis
+🔄 PROJECT WORKFLOW
 
-Examined product and category performance to identify important sales contributors.
+CSV Datasets → PostgreSQL → SQL Analysis → Power BI Dashboard
 
-3. Customer Analysis
+---
 
-Explored the available customer-related attributes, including age group and gender.
+🎯 PROJECT OBJECTIVE
 
-4. Geographic Analysis
-
-Compared sales performance across the six countries and available store locations.
-
-5. Transaction Analysis
-
-Analyzed transaction details, payment methods, quantities, discounts, and sales amounts.
-
-6. Profitability Analysis
-
-Examined sales and profit measures using the available cost and sales information.
-
-📂 Dataset Description
-
-The project uses six country-specific CSV files:
-
-- "sales_Canada.csv"
-- "sales_China.csv"
-- "sales_India.csv"
-- "sales_Nigeria.csv"
-- "sales_UK.csv"
-- "sales_US.csv"
-
-Each source dataset contains 15 columns covering transaction details, dates, country, product information, prices, quantities, costs, discounts, payment methods, customer demographics, store locations, and sales representatives.
-
-🗄️ SQL Operations
-
-- Combined country datasets using SQL.
-- Checked selected columns for missing values.
-- Checked transaction IDs for duplicates.
-- Performed data corrections where required.
-- Created calculated sales and profit columns.
-- Prepared the data for Power BI reporting.
-
-📊 Power BI Dashboard
-
-The project includes dashboard pages designed to explore different aspects of retail performance:
-
-1. Summary
-2. Overview
-3. Sales Analysis
-4. Product Analysis
-5. Customer Analysis
-6. Geographic Analysis
-7. Transaction Analysis
-
-Dashboard pages and features should reflect the final implemented Power BI report.
-
-🔄 Project Workflow
-
-CSV Datasets → PostgreSQL → SQL Data Preparation → Power BI → Interactive Dashboard
-
-💼 Business Value
-
-This project demonstrates how data analytics tools can be used to:
-
-- Compare sales across countries.
-- Identify important products and categories.
-- Understand payment-method usage.
-- Examine customer demographic patterns.
-- Monitor sales and profitability.
-- Present business insights through interactive reports.
-
-⚠️ Data Limitations
-
-- Customer-level analysis is limited by the available customer identifiers.
-- Geographic analysis depends on the locations provided in the datasets.
-- Profitability results depend on the correctness of the cost and profit calculations.
-
-🚀 Future Enhancements
-
-- Automate data refresh.
-- Add more detailed sales trend analysis.
-- Improve data validation and quality checks.
-- Develop additional business KPIs.
-- Enhance dashboard interactivity.
-
-👨‍💻 Conclusion
-
-RetailMart Country Sales Analysis demonstrates the use of PostgreSQL, SQL, and Power BI to prepare, analyze, and visualize multi-country retail sales data.
-
-The project showcases data preparation, SQL querying, KPI analysis, and dashboard development for business reporting.
+To transform retail sales data into meaningful insights and support data-driven business decisions.
