@@ -56,12 +56,17 @@ The project uses SQL, PostgreSQL, and Microsoft Power BI to analyze sales perfor
 The project contains six country-level CSV datasets.
 
 📄 Dataset| 🌍 Country
-"sales_Canada.csv"| 🇨🇦 Canada
-"sales_China.csv"| 🇨🇳 China
-"sales_India.csv"| 🇮🇳 India
-"sales_Nigeria.csv"| 🇳🇬 Nigeria
-"sales_UK.csv"| 🇬🇧 United Kingdom
-"sales_US.csv"| 🇺🇸 United States
+"sales_Canada.csv"| Canada
+
+"sales_China.csv"| China
+
+"sales_India.csv"| India
+
+"sales_Nigeria.csv"| Nigeria
+
+"sales_UK.csv"| United Kingdom
+
+"sales_US.csv"| United States
 
 📋 Dataset Columns
 
