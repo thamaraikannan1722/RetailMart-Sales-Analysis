@@ -1,49 +1,977 @@
 📊 RETAILMART COUNTRY SALES ANALYSIS
 
-SQL | POSTGRESQL | POWER BI
+📌 TABLE OF CONTENTS
+
+1. "Project Overview" 
+2. "Business Problem Statement" 
+3. "Project Objectives"
+4. "Project Scope”
+5. "Tools and Technologies" 
+6. "Dataset Overview" 
+7. "Dataset Columns" 
+8. "Project Architecture" 
+9. "Project Workflow" 
+10. "SQL and PostgreSQL Implementation" 
+11. "Data Cleaning and Validation" 
+12. "Sales and Profit Calculations" 
+13. "Power BI Dashboard" 
+14. "Dashboard Pages" 
+15. "Key Performance Indicators" 
+16. "Business Questions" 
+17. "Data Validation and Testing" 
+18. "Project Deliverables" 
+19. "Project Limitations" 
+20. "Future Enhancements" 
+21. "How to Run the Project" 
+22. "Skills Demonstrated" 
+23. "Conclusion”
 
 ---
 
 📌 PROJECT OVERVIEW
 
-RetailMart Country Sales Analysis is a data analytics project focused on analyzing retail sales across six countries using SQL, PostgreSQL, and Power BI.
+RetailMart Country Sales Analysis is a data analytics and business intelligence project designed to analyze retail sales and transaction data across multiple countries.
+
+The project demonstrates an end-to-end analytics workflow, starting with source data preparation and continuing through database management, SQL analysis, calculated fields, and interactive dashboard development using Microsoft Power BI.
+
+The project uses sales datasets associated with six countries:
+
+-  Canada
+-  China
+-  India
+-  Nigeria
+-  United Kingdom
+-  United States
+
+The datasets contain transaction-level information, including transaction identifiers, dates, product details, prices, quantities, discounts, payment methods, customer demographic categories, store locations, and sales representatives.
+
+PostgreSQL is used to store, inspect, validate, and analyze the sales data. SQL queries support data-quality checks and sales analysis, while Power BI provides interactive reports for exploring sales performance and transaction patterns.
+
+The final objective is to transform raw sales records into a structured and understandable reporting solution that supports data-driven analysis.
+
+Project Highlights
+
+- Analysis of sales data from six countries.
+- Source-data inspection and preparation.
+- PostgreSQL database operations.
+- SQL-based data-quality checks.
+- Identification of null values and duplicate transaction identifiers.
+- Calculation of total sales amounts and profit fields.
+- Sales analysis by country, product, store location, and sales representative.
+- Power BI KPI cards and interactive visualizations.
+- Monthly, weekly, product, payment, customer-demographic, and geographic analysis where supported by the available data.
+- Dashboard navigation and consistent visual formatting.
+
+---
+
+
+🎯 BUSINESS PROBLEM STATEMENT
+
+Retail sales datasets contain large numbers of transaction records. Examining individual records manually makes it difficult to understand overall sales performance, compare products, identify important payment methods, and analyze changes over time.
+
+Without a structured analytical process, it can also be difficult to identify missing values, duplicate transaction identifiers, inconsistent data, or incorrect calculated values.
+
+This project addresses these challenges by organizing sales data in PostgreSQL, applying SQL-based analysis and validation, and presenting the results through Power BI dashboards.
+
+The reporting solution is intended to make important sales indicators and transaction patterns easier to review and compare.
+
+---
+
+🎯 PROJECT OBJECTIVES
+
+The main objectives of this project are:
+
+1. Import and inspect sales datasets from six countries.
+2. Understand the structure and meaning of the available data columns.
+3. Identify data-quality issues, including missing values and duplicate transaction identifiers.
+4. Use PostgreSQL to store and manage the combined sales data.
+5. Write SQL queries to inspect, clean, validate, and analyze sales records.
+6. Calculate total sales amount and profit fields for further analysis.
+7. Analyze sales performance across countries and store locations.
+8. Identify products with high sales quantities.
+9. Analyze sales representatives using sales values.
+10. Create Power BI measures for important business indicators.
+11. Build interactive dashboards for sales, products, customers, geography, and transactions.
+12. Present information through clear KPI cards, charts, filters, and navigation.
+13. Validate report calculations against the underlying data.
+14. Document the project so that its workflow and business purpose can be explained during a project review or interview.
 
 ---
 
 🛠️ TOOLS AND TECHNOLOGIES
 
-- PostgreSQL
-- SQL
-- Microsoft Power BI
-- CSV Datasets
+Tool / Technology| Purpose
+Microsoft Excel| Source-data inspection and preparation where used
+PostgreSQL| Database storage, SQL queries, data inspection, and calculated fields
+SQL| Data-quality checks, transformations, aggregations, and business analysis
+Power BI Desktop| Dashboard development and interactive data visualization
+Power Query| Data transformation, column preparation, and data-type management
+DAX| Measures and calculations for KPI cards and report visuals
+GitHub| Project version control, documentation, and portfolio presentation
+Markdown| Formatting the project README documentation
 
 ---
 
-📈 KEY PERFORMANCE INDICATORS
+📂 DATASET OVERVIEW
 
-- Total Sales
-- Total Profit
-- Total Transactions
-- Total Quantity Sold
+The project uses six country-specific CSV files.
+
+Source Files
+
+No.| Dataset File| Country
+1| "sales_Canada.csv"| Canada
+2| "sales_China.csv"| China
+3| "sales_India.csv"| India
+4| "sales_Nigeria.csv"| Nigeria
+5| "sales_UK.csv"| United Kingdom
+6| "sales_US.csv"| United States
+
+Each source dataset reportedly contains 15 columns describing transaction information, product details, prices, quantities, discounts, payment methods, customer demographic categories, store locations, and sales representatives.
+
+The country-specific datasets are combined for consolidated analysis in PostgreSQL.
+
+Important: The exact total row count, final number of records after cleaning, date range, and final KPI values should be added after checking the actual datasets and completed report. They are not stated here because they have not been verified from the final data.
 
 ---
 
-🔍 ANALYSIS PERFORMED
+🧾 DATASET COLUMNS
 
-- Sales Analysis
-- Product Analysis
-- Customer Analysis
-- Geographic Analysis
-- Transaction Analysis
+The source datasets contain the following 15 columns.
+
+No.| Column Name| Description
+1| "Transaction_ID"| Identifier associated with a transaction
+2| "Date"| Date associated with the transaction
+3| "Country"| Country associated with the sales record
+4| "Product_ID"| Identifier associated with a product
+5| "Product_Name"| Name of the product
+6| "Category"| Product category
+7| "Price_per_Unit"| Price of one unit of a product
+8| "Quantity_Purchased"| Number of units purchased
+9| "Cost_Price"| Cost price recorded for the product or item
+10| "Discount_Applied"| Discount value associated with the transaction or item
+11| "Payment_Method"| Payment method used
+12| "Customer_Age_Group"| Customer age-group category
+13| "Customer_Gender"| Customer gender category
+14| "Store_Location"| Location associated with the store
+15| "Sales_Rep"| Sales representative associated with the record
+
+Data Considerations
+
+- Column names may need to be mapped to the actual PostgreSQL and Power BI field names.
+- Date and numeric fields should use suitable data types.
+- The meaning of "Discount_Applied" must be confirmed before using it in financial calculations.
+- The meaning and unit of "Cost_Price" must be confirmed before calculating profit.
+- "Transaction_ID" can be used for transaction counting only after confirming that it reliably identifies transactions.
+- The available fields do not include a dedicated customer ID or customer name, according to the project details reviewed.
+
+---
+
+🏗️ PROJECT ARCHITECTURE
+
+The project follows a structured data analytics workflow.
+
+       COUNTRY SALES DATASETS
+                  |
+                  v
+          SOURCE CSV FILES
+                  |
+                  v
+      DATA INSPECTION & PREPARATION
+                  |
+                  v
+          POSTGRESQL DATABASE
+                  |
+                  v
+          SQL DATA VALIDATION
+                  |
+                  v
+       CALCULATED SALES FIELDS
+                  |
+                  v
+          POWER BI CONNECTION
+                  |
+                  v
+          DATA MODEL & DAX
+                  |
+                  v
+       INTERACTIVE DASHBOARDS
+                  |
+                  v
+       SALES ANALYSIS & INSIGHTS
+
+Architecture Explanation
+
+1. Source Data
+
+Six CSV files provide transaction-level sales information for the selected countries.
+
+2. Data Preparation
+
+The data is inspected for missing values, duplicate transaction identifiers, incorrect data types, and other potential quality issues.
+
+3. PostgreSQL
+
+The sales records are stored and queried in PostgreSQL. SQL is used to inspect records, validate fields, calculate sales values, and summarize results.
+
+4. Power BI
+
+Power BI connects to the prepared data and uses the available fields and measures to build interactive report pages.
+
+5. Reporting
+
+The dashboard provides visual summaries of sales and transaction activity across the available dimensions.
 
 ---
 
 🔄 PROJECT WORKFLOW
 
-CSV Datasets → PostgreSQL → SQL Analysis → Power BI Dashboard
+Step 1: Data Collection
+
+Collect the six country-specific CSV datasets and inspect their column names, data types, and sample records.
+
+Step 2: Data Inspection
+
+Review the source data to understand its structure and identify fields required for sales analysis.
+
+Step 3: Database Preparation
+
+Use PostgreSQL to create or prepare the target table and load the required sales records.
+
+Step 4: Data Quality Checks
+
+Use SQL queries to inspect null values and duplicate transaction identifiers.
+
+Step 5: Data Correction
+
+Apply corrections to selected records where required. Corrections should be based on a valid source or documented rule.
+
+Step 6: Calculated Fields
+
+Add calculated columns such as "Total Amount" and "Profit", subject to validation of the business definitions and calculation formulas.
+
+
+
+
+Step 7: SQL Analysis
+
+Write aggregation queries to summarize sales and profit by country, product, sales representative, and store location.
+
+Step 8: Power BI Connection
+
+Connect Power BI Desktop to the prepared data source and verify that columns have suitable data types.
+
+Step 9: Data Modeling and DAX
+
+Create the measures needed for the dashboard and ensure that calculations use the correct fields.
+
+Step 10: Dashboard Development
+
+Build the report pages, KPI cards, charts, slicers, and navigation elements.
+
+Step 11: Validation
+
+Compare important sales totals with the source data or SQL results. Test the report filters, calculations, and sorting.
+
+Step 12: Documentation and Publication
+
+Organize the project files and publish the README, SQL script, and other appropriate project assets to GitHub.
 
 ---
 
-🎯 PROJECT OBJECTIVE
+🗄️ SQL AND POSTGRESQL IMPLEMENTATION
 
-To transform retail sales data into meaningful insights and support data-driven business decisions.
+The SQL script used in the project is:
+
+"RetailMart-Country-Analysis.sql"
+
+The script includes SQL operations for inspecting sales records, checking data quality, updating selected values, adding calculated columns, and analyzing sales performance.
+
+1. Inspect the Sales Table
+
+The following query displays records from the sales table.
+
+SELECT *
+FROM public."Sales Data";
+
+For a smaller sample during inspection:
+
+SELECT *
+FROM public."Sales Data"
+LIMIT 10;
+
+2. Check Duplicate Transaction Identifiers
+
+SELECT
+    "Transaction ID",
+    COUNT(*) AS transaction_count
+FROM public."Sales Data"
+GROUP BY "Transaction ID"
+HAVING COUNT(*) > 1;
+
+This query identifies transaction identifiers that appear more than once.
+
+A duplicate identifier should be investigated before deletion because repeated identifiers may represent a data-quality issue or legitimate multiple records, depending on the source-data design.
+
+3. Add the Total Amount Column
+
+The project SQL script adds a numeric column for total amount.
+
+ALTER TABLE public."Sales Data"
+ADD COLUMN "Total Amount" NUMERIC(10,2);
+
+The script then calculates the amount using the unit price, quantity, and discount fields.
+
+UPDATE public."Sales Data"
+SET "Total Amount" =
+    ("Price Per Unit" * "Quantity Purchased")
+    - "Discount Applied";
+
+Validation note: This formula is appropriate only when "Discount Applied" represents a currency amount that should be subtracted from the extended price. If it represents a percentage, the formula must be adjusted. The calculation should also be checked to ensure the discount is not applied twice.
+
+4. Add the Profit Column
+
+The script adds a numeric profit column.
+
+ALTER TABLE public."Sales Data"
+ADD COLUMN "Profit" NUMERIC(10,2);
+
+The current project script uses the following formula:
+
+UPDATE public."Sales Data"
+SET "Profit" =
+    "Total Amount" - ("Cost Price" + "Quantity Purchased");
+
+Important calculation check: This is the formula present in the project script, but it should not be assumed to represent standard profit without validating the meaning of "Cost Price". If "Cost Price" is the cost per unit, total cost would ordinarily depend on both unit cost and quantity purchased. Confirm the source-data definition and correct the formula if necessary before presenting profit figures as verified business results.
+
+5. Sales Revenue and Profit by Country
+
+The project script includes a query that summarizes sales and profit by country for a selected date range.
+
+SELECT
+    "Country",
+    SUM("Total Amount") AS "Total Revenue",
+    SUM("Profit") AS "Total Profit"
+FROM public."Sales Data"
+WHERE "Date" BETWEEN '2025-02-10' AND '2025-02-14'
+GROUP BY "Country"
+ORDER BY "Total Revenue" DESC;
+
+This query groups the results by country and sorts countries by total revenue.
+
+The selected date range is an example of the period used in the SQL script; it should be changed if the analysis requires a different period.
+
+6. Top Five Best-Selling Products
+
+SELECT
+    "Product Name",
+    SUM("Quantity Purchased") AS "Total Units Sold"
+FROM public."Sales Data"
+WHERE "Date" BETWEEN '2025-02-10' AND '2025-02-14'
+GROUP BY "Product Name"
+ORDER BY "Total Units Sold" DESC  LIMIT 5;
+This query identifies the five products with the highest total purchased quantity within the selected period.
+
+7. Best Sales Representatives
+
+SELECT
+    "Sales Representative",
+    SUM("Total Amount") AS "Total Sales"
+FROM public."Sales Data"
+WHERE "Date" BETWEEN '2025-02-10' AND '2025-02-14'
+GROUP BY "Sales Representative"
+ORDER BY "Total Sales" DESC
+LIMIT 5;
+
+This query ranks sales representatives according to their summed sales amount for the selected period.
+
+The field name must match the actual PostgreSQL schema. The original SQL script uses "Sales Representative" in these queries, while the source-column list refers to "Sales_Rep". Confirm that the column name in the database matches the query.
+
+8. Top Store Locations by Sales
+
+SELECT
+    "Store Location",
+    SUM("Total Amount") AS "Total Sales",
+    SUM("Profit") AS "Total Profit"
+FROM public."Sales Data"
+WHERE "Date" BETWEEN '2025-02-10' AND '2025-02-14'
+GROUP BY "Store Location"
+ORDER BY "Total Sales" DESC
+LIMIT 5;
+
+This query identifies the five store locations with the highest total sales during the selected period.
+
+Profit results should be interpreted only after validating the profit formula.
+
+9. Sales and Profit Summary
+
+SELECT
+    MIN("Total Amount") AS "Min Sales Value",
+    MAX("Total Amount") AS "Max Sales Value",
+    AVG("Total Amount") AS "Avg Sales Value",
+    SUM("Total Amount") AS "Total Sales Value",
+    MIN("Profit") AS "Min Profit",
+    MAX("Profit") AS "Max Profit",
+    AVG("Profit") AS "Avg Profit",
+    SUM("Profit") AS "Total Profit"
+FROM public."Sales Data"
+WHERE "Date" BETWEEN '2025-02-10' AND '2025-02-14';
+
+This query returns summary statistics for sales amount and profit during the selected period.
+
+SQL Analysis Summary
+
+The SQL implementation supports:
+
+- Table inspection.
+- Duplicate transaction identifier checks.
+- Data correction.
+- Calculated-column creation.
+- Sales amount calculations.
+- Profit calculations.
+- Sales aggregation by country.
+- Product ranking by quantity.
+- Sales representative ranking.
+- Store location analysis.
+- Sales and profit summary statistics.
+
+---
+
+🧹 DATA CLEANING AND VALIDATION
+
+Data quality is important because errors in the source data can affect KPI cards, chart totals, rankings, and business conclusions.
+
+The project includes or calls for the following checks.
+
+Validation Area| Purpose
+Null values| Identify missing values in important fields
+Duplicate transaction IDs| Investigate repeated identifiers
+Numeric data types| Confirm prices, quantities, discounts, and calculated amounts use appropriate types
+Date data| Verify valid dates and chronological sorting
+Product categories| Inspect category names for unexpected or inconsistent values
+Payment methods| Inspect payment labels and their distribution
+Calculated amounts| Compare calculated totals with the underlying source data
+Profit| Validate the cost definition and calculation formula
+Dashboard totals| Reconcile Power BI results with SQL or source-data results
+Filters| Confirm that slicers and filters produce expected results
+
+Data Quality Principle
+
+A data-quality check does not automatically mean that every issue has been corrected. The final project should document which problems were found, which corrections were applied, and which limitations remain.
+
+---
+
+
+
+
+💰 SALES AND PROFIT CALCULATIONS
+
+The project contains two important calculated fields.
+
+Total Amount
+
+The current SQL script calculates:
+
+"Total Amount = (Price Per Unit × Quantity Purchased) − Discount Applied"
+
+This calculation assumes that the discount is a currency amount and is not already included in the total.
+
+Profit
+
+The current project SQL script calculates:
+
+"Profit = Total Amount − (Cost Price + Quantity Purchased)"
+
+This formula must be validated against the actual definition of "Cost Price".
+
+If "Cost Price" represents the cost per unit and "Quantity Purchased" represents the number of units sold, a conventional total-cost calculation would generally be:
+
+"Total Cost = Cost Price × Quantity Purchased"
+
+Profit would then ordinarily be:
+
+"Profit = Net Sales Amount − Total Cost"
+
+The correct formula depends on the actual meaning of the source fields and how discounts are represented.
+
+Before reporting final profit values, validate the calculation against sample transactions and the source-data definitions.
+
+---
+
+📊 POWER BI DASHBOARD
+
+Microsoft Power BI Desktop is used to turn the prepared sales data into an interactive reporting experience.
+
+The dashboard is organized into seven report pages, based on the project details shared during development.
+
+Dashboard Objectives
+
+- Present important sales indicators through KPI cards.
+- Make transaction information easier to understand.
+- Compare performance across available categories and dimensions.
+- Explore sales trends over time.
+- Analyze product and payment-method patterns.
+- Present customer demographic categories where the data supports them.
+- Explore geographic and store-location information.
+- Provide navigation between report pages.
+
+Visualizations
+
+Depending on the available fields and the final implementation, the report can include:
+
+- KPI cards.
+- Bar charts.
+- Column charts.
+- Stacked column charts.
+- Donut charts.
+- Monthly sales comparisons.
+- Weekly sales analysis.
+- Payment-method breakdowns.
+- Product category comparisons.
+- Geographic or store-location analysis.
+- Slicers and report navigation.
+
+Only visuals present in the final Power BI file should be described as completed.
+
+---
+
+📄 DASHBOARD PAGES
+
+1. Summary
+
+Purpose: Provide a high-level view of sales and transaction performance.
+
+This page is intended to summarize important KPIs so that users can quickly understand the overall status of the available sales data.
+
+Possible KPI cards include:
+
+- Total Sales.
+- Total Transactions.
+- Total Quantity.
+- Total Discount, if its definition supports aggregation.
+
+2. Overview
+
+Purpose: Provide a broader view of sales performance and the distribution of activity across available dimensions.
+
+This page can help users explore overall sales patterns and compare the information represented in the dataset.
+
+3. Sales Analysis
+
+Purpose: Analyze sales performance across dates and other available dimensions.
+
+Possible analysis includes:
+
+- Monthly sales comparison.
+- Weekly sales trends.
+- Sales performance across selected periods.
+- Comparison of sales values under different filters.
+
+Monthly and weekday analysis require valid date data and correct chronological sorting.
+
+4. Product Analysis
+
+Purpose: Understand product and category performance.
+
+Possible analysis includes:
+
+- Sales by product category.
+- Quantity purchased by product.
+- Comparison of product performance.
+- Identification of products with high sales quantities.
+
+Product names, category fields, prices, and quantities support this analysis.
+
+
+
+5. Customer Analysis
+
+Purpose: Explore the customer-related demographic information available in the source data.
+
+The source fields include customer age group and customer gender. These fields can be used to analyze the distribution of transaction records across the available demographic categories.
+
+Limitation: The documented dataset does not contain a dedicated Customer ID or Customer Name. Therefore, a reliable unique-customer count or customer-level history cannot be established from those missing identifiers alone.
+
+Transaction counts must not be presented as unique customer counts.
+
+6. Geographic Analysis
+
+Purpose: Explore sales performance across geographic dimensions.
+
+The available country and store-location fields can support comparisons of sales values and transaction activity across the represented locations.
+
+Possible analysis includes:
+
+- Sales by country.
+- Sales by store location.
+- Comparison of total sales across available geographic categories.
+
+Any country-level comparison should use the actual records and validated totals.
+
+7. Transaction Analysis
+
+Purpose: Examine transaction-level information and payment patterns.
+
+Possible analysis includes:
+
+- Transaction counts.
+- Payment-method distribution.
+- Transaction amount comparisons.
+- Review of transaction records and associated product information.
+
+Transaction counting depends on the reliability and uniqueness of "Transaction_ID".
+
+---
+
+📈 KEY PERFORMANCE INDICATORS
+
+The following measures are relevant to the project. The exact final measures should match those implemented in the Power BI model.
+
+1. Total Sales
+
+Purpose: Summarize the total sales amount.
+
+Example DAX:
+
+Total Sales =
+SUM('Sales Data'[Total Amount])
+
+Replace "'Sales Data'" with the actual table name used in the Power BI model.
+
+2. Total Transactions
+
+Purpose: Count distinct transaction identifiers.
+
+Total Transactions =
+DISTINCTCOUNT('Sales Data'[Transaction ID])
+
+Use this measure only if the transaction identifier reliably represents transactions.
+
+3. Total Quantity
+
+Purpose: Summarize the quantity purchased.
+
+Total Quantity =
+SUM('Sales Data'[Quantity Purchased])
+
+
+
+4. Total Discount
+
+Purpose: Summarize discounts when the discount field represents an additive numeric amount.
+
+Total Discount =
+SUM('Sales Data'[Discount Applied])
+
+If the field represents a percentage rather than a currency amount, a different calculation may be required.
+
+5. Average Transaction Value
+
+Purpose: Calculate the average sales amount per distinct transaction.
+
+Average Transaction Value =
+DIVIDE(
+    [Total Sales],
+    [Total Transactions]
+)
+
+This measure depends on the validity of both the sales amount and transaction count.
+
+KPI Validation
+
+Before finalizing the report, compare the results of these measures against equivalent calculations from PostgreSQL or the source data.
+
+Do not add a unique-customer KPI without a valid customer identifier.
+
+---
+
+❓ BUSINESS QUESTIONS
+
+The project is designed to help explore the following questions.
+
+Sales Performance
+
+- What is the total sales amount for the selected data or period?
+- How does sales performance change over time?
+- What are the minimum, maximum, and average transaction amounts?
+- Which countries or store locations contribute the highest sales amounts?
+
+Product Performance
+
+- Which products have the highest purchased quantities?
+- Which product categories generate the largest sales amounts?
+- How do sales quantities vary across products?
+
+Payment Methods
+
+- Which payment methods appear in the dataset?
+- How is sales activity distributed across payment methods?
+- How do payment-method comparisons change when report filters are applied?
+
+Geographic Performance
+
+- How do sales amounts compare across the six represented countries?
+- Which store locations have the highest sales amounts?
+- How does geographic performance vary across the available data?
+
+Transaction Analysis
+
+- How many distinct transaction identifiers are recorded?
+- What is the distribution of transaction amounts?
+- Are there duplicate transaction identifiers that require investigation?
+
+Data Quality
+
+- Are important fields missing values?
+- Are transaction identifiers duplicated?
+- Do calculated amounts agree with the source-data definitions?
+- Do the SQL and Power BI results match under equivalent filters?
+
+These are analysis questions, not claims about results. Final findings should be written only after checking the completed dashboard and validated figures.
+
+---
+
+🧪 DATA VALIDATION AND TESTING
+
+The following checks help ensure that the reporting solution is consistent and reliable.
+
+Test| Expected Result
+Source row-count check| The loaded data matches the expected source records, accounting for documented cleaning or filtering
+Null-value check| Missing values in important fields are identified
+Duplicate transaction check| Repeated identifiers are investigated
+Total Amount check| Calculated values agree with the confirmed calculation rules
+Profit check| Profit values use a validated cost and discount definition
+SQL-to-Power BI comparison| Equivalent calculations produce matching results
+Transaction-count check| The measure uses the correct transaction identifier
+Date sorting check| Months and weekdays appear in chronological order
+Slicer testing| Filters update the relevant visuals correctly
+Navigation testing| Page-navigation elements open the intended report pages
+Number-format check| KPI values are displayed clearly and with appropriate precision
+
+Acceptance Criteria
+
+The project can be considered ready for portfolio review when:
+
+- The source data and database structure are documented.
+- SQL queries execute against the correct schema and table.
+- Calculated fields have been validated.
+- The Power BI report contains the intended pages and visuals.
+- Important totals are reconciled against the underlying data.
+- Filters and navigation work correctly.
+- Data limitations and assumptions are documented.
+- The project files are organized and available for review.
+
+---
+
+📦 PROJECT DELIVERABLES
+
+The project repository can include the following files and materials.
+
+Deliverable| Description
+Source CSV files| Six country-specific datasets, if redistribution is permitted
+SQL script| "RetailMart-Country-Analysis.sql"
+Power BI report| The completed ".pbix" file
+README| Project description, methodology, SQL examples, and documentation
+BRD| Business Requirements Document
+Dashboard screenshots| Images showing the completed report pages
+Exported report| PDF export of the Power BI report, if created
+Findings| Validated KPI values and business observations
+
+Only files actually included in the repository should be marked as available.
+
+---
+
+⚠️ PROJECT LIMITATIONS
+
+The following limitations should be considered when interpreting the results.
+
+1. Missing Customer Identifier
+
+The documented dataset does not include a dedicated customer ID or customer name.
+
+Consequently, the project cannot reliably identify unique customers or track individual customer histories using the listed fields alone.
+
+2. Discount Definition
+
+The meaning of "Discount_Applied" must be confirmed. A currency amount and a percentage require different calculation logic.
+
+3. Profit Formula
+
+The current SQL script's profit calculation must be validated against the meaning and unit of "Cost Price" and "Quantity Purchased".
+
+4. Transaction Identifier Quality
+
+A repeated "Transaction_ID" should be investigated before deciding whether it is a duplicate that needs correction.
+
+5. Data Accuracy
+
+The quality of the analysis depends on the accuracy, completeness, and consistency of the source records.
+
+6. Date-Based Analysis
+
+Monthly and weekly comparisons require valid dates and suitable sorting logic.
+
+7. Final KPI Values
+
+Actual sales totals, profit totals, transaction counts, and other results must be taken from the validated data and final Power BI report. They should not be inferred from sample SQL queries.
+
+---
+
+🚀 FUTURE ENHANCEMENTS
+
+Potential improvements to the project include:
+
+1. Validate all financial calculations against documented business definitions.
+2. Add a dedicated date table to support reliable time-based analysis.
+3. Improve automated data-quality checks.
+4. Document the source row count and the number of records after cleaning.
+5. Add verified sales and profit findings to the project documentation.
+6. Improve the report with additional drill-through and tooltip functionality where useful.
+7. Add more advanced time-intelligence measures after validating the data model.
+8. Obtain a reliable customer identifier if customer-level analysis is required and the data owner can provide it.
+9. Document the exact data-refresh and database-connection process.
+10. Add screenshots of the completed Power BI report pages to the GitHub repository.
+
+These are possible enhancements and should not be presented as already implemented unless they have been completed.
+
+---
+
+▶️ HOW TO RUN THE PROJECT
+
+Prerequisites
+
+Install or prepare the following tools:
+
+- PostgreSQL.
+- A PostgreSQL client such as pgAdmin.
+- Microsoft Power BI Desktop.
+- The required source CSV files.
+- The project SQL script.
+
+
+Step 1: Obtain the Project Files
+
+Download or clone the repository and locate the SQL script and available source datasets.
+
+Step 2: Prepare PostgreSQL
+
+Create or select the appropriate database and confirm that the required table exists.
+
+The SQL script references:
+
+"public."Sales Data""
+
+Your actual table and column names must match those used in the script.
+
+Step 3: Load the Data
+
+Import the required sales records into the PostgreSQL table. Confirm that the columns have the expected names and appropriate data types.
+
+Step 4: Execute SQL Queries
+
+Open "RetailMart-Country-Analysis.sql" in your PostgreSQL query tool.
+
+Run the statements in the appropriate order, checking the output and validating calculated fields before relying on their results.
+
+Do not rerun "ALTER TABLE ... ADD COLUMN" statements without checking whether the columns already exist.
+
+Step 5: Connect Power BI
+
+Open Power BI Desktop and connect to the PostgreSQL database containing the prepared sales data.
+
+Select the correct server, database, schema, and table.
+
+Step 6: Validate the Data Model
+
+Confirm the column names, data types, relationships, and required measures.
+
+Check that the date field is suitable for time-based analysis.
+
+Step 7: Open the Power BI Report
+
+Open the project ".pbix" file if it is included in the repository. If it is not included, use the prepared data source to reproduce the report.
+
+Step 8: Refresh and Verify
+
+Refresh the data and verify the KPI cards, charts, filters, and navigation.
+
+Compare important totals with PostgreSQL results under equivalent filters.
+
+Step 9: Review the Results
+
+Use the completed dashboard to explore sales, transactions, products, payment methods, customer demographic categories, and geographic performance.
+
+---
+
+💻 SKILLS DEMONSTRATED
+
+This project demonstrates practical experience with the following areas:
+
+Data Analytics
+
+- Data inspection.
+- Data-quality assessment.
+- Data validation.
+- Sales analysis.
+- Business-question formulation.
+- KPI interpretation.
+
+SQL and PostgreSQL
+
+- SELECT queries.
+- Filtering with WHERE.
+- Grouping with GROUP BY.
+- Aggregation using SUM, MIN, MAX, and AVG.
+- Duplicate identification using GROUP BY and HAVING.
+- Table modification using ALTER TABLE.
+- Data updates using UPDATE.
+- Ranking results using ORDER BY and LIMIT.
+- Calculated-column creation and validation.
+
+Power BI
+
+- Data import and preparation.
+- Data modeling.
+- DAX measures.
+- KPI cards.
+- Donut charts.
+- Bar and column charts.
+- Time-based analysis.
+- Report filters and slicers.
+- Navigation design.
+- Visual formatting and layout.
+
+Documentation and Portfolio Development
+
+- Technical documentation.
+- Business requirements documentation.
+- Project organization.
+- Markdown.
+- GitHub repository presentation.
+
+---
+
+🏁 CONCLUSION
+
+RetailMart Country Sales Analysis demonstrates an end-to-end approach to retail sales analytics using source datasets, PostgreSQL, SQL, and Microsoft Power BI.
+
+The project combines data inspection, database operations, data-quality checks, calculated fields, SQL-based business analysis, and interactive dashboard development.
+
+Its seven report pages are intended to make sales performance and transaction information easier to explore across the available product, payment, demographic, date, and geographic dimensions.
+
+The project also highlights the importance of validating calculated fields, reconciling dashboard totals with source data, and documenting limitations before drawing business conclusions.
+
+By organizing the data-processing workflow and presenting the analysis through Power BI, the project provides a practical portfolio example of applying data analytics tools to a retail sales reporting problem.
+
+---
+
+
+
+
+👤 PROJECT INFORMATION
+
+Project Name: RetailMart Country Sales Analysis
+Project Type: Data Analytics and Business Intelligence
+Primary Tools: PostgreSQL, SQL, Microsoft Power BI
+Source Data: Six country-specific sales CSV files
+Reporting Platform: Power BI Desktop.
+
